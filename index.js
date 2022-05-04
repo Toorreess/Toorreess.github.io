@@ -62,7 +62,7 @@ function pinwiFunction () {
 
 
     console.log(nameRect.top)
-    Lvl.innerHTML = "Nivel "+ lvl
+    Lvl.innerHTML = "Level "+ lvl
     Exp.innerHTML = exp + " EXP"
 
     // if(!pinwiclicked) {
