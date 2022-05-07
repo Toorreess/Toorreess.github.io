@@ -1,77 +1,54 @@
-const Tienda = document.getElementById("tienda")
-const Menu = document.getElementById("slidingmenu")
-const Pinwi = document.getElementById("pinwi")
-const Name = document.getElementById("name")
-// const Name = document.getElementById("name")
+function setFormMessage(formElement, type, message) {
+    const messageElement = formElement.querySelector(".form__message");
 
-
-const pinwiRect = Pinwi.getBoundingClientRect()
-const nameRect = Name.getBoundingClientRect()
-
-// var clicked = 0
-// var pinwiclicked = 0
-var exp = 0
-var lvl = 0
-var initWidth = Pinwi.clientWidth
-// Name.addEventListener("animationiteration", ()=>{
-//     if (!pinwiclicked) {
-//         console.log("Iteration end!")
-//         Name.style.removeProperty("animation")
-//     }
-// })
-
-Tienda.addEventListener("click", () =>{
-    console.log("tienda clicked!")
-    if(clicked===0){
-    Menu.classList.remove("hidden")
-    clicked=1;
-}else{
-    Menu.classList.add("hidden")
-    clicked=0
+    messageElement.textContent = message;
+    messageElement.classList.remove("form__message--success", "form__message--error");
+    messageElement.classList.add(`form__message--${type}`);
 }
-}, false)
 
-Pinwi.addEventListener("click", pinwiFunction) 
+function setInputError(inputElement, message) {
+    inputElement.classList.add("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
+}
 
-function pinwiFunction () {
-    // console.log(pinwiclicked)
-    let nameRect = Name.getBoundingClientRect()
-    let pinwiRect = Pinwi.getBoundingClientRect()
-    exp++
-    let Exp = document.getElementById("exp")
-    let Lvl = document.getElementById("lvl")
-    let currWidth = Pinwi.clientWidth
-    console.log(currWidth)
-    if(exp==10){
-        exp-=10;
-        lvl++;
-    }
-    switch (lvl){
-        case 0: break
-        case 1: Pinwi.src="./skin/huevoRotoF.png"; break;
-        case 2: Pinwi.src = "./skin/pinwiBBF.png"; break;
-        default: Pinwi.src = "./skin/pinwiAdulF.png"; break;
-    }
-    if(lvl<4) {
-        Pinwi.style.width = (initWidth + exp*5+lvl) + "px"
-        if(pinwiRect.y <= nameRect.y+nameRect.height){
-            console.log("Collision!")
-            Name.style.top = (Name.offsetTop - 1) + "px"
-        }
-    }
+function clearInputError(inputElement) {
+    inputElement.classList.remove("form__input--error");
+    inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
+}
 
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#login");
+    const createAccountForm = document.querySelector("#createAccount");
 
-    console.log(nameRect.top)
-    Lvl.innerHTML = "Level "+ lvl
-    Exp.innerHTML = exp + " EXP"
+    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+        e.preventDefault();
+        loginForm.classList.add("form--hidden");
+        createAccountForm.classList.remove("form--hidden");
+    });
 
-    // if(!pinwiclicked) {
-    //     Name.style.animation = "sizing 1s ease-in-out 0s infinite alternate"
-    //     pinwiclicked=1
-    // }else{
-    //     pinwiclicked=0
-    // } 
-        
-    
-    
-    }
+    document.querySelector("#linkLogin").addEventListener("click", e => {
+        e.preventDefault();
+        loginForm.classList.remove("form--hidden");
+        createAccountForm.classList.add("form--hidden");
+    });
+
+    loginForm.addEventListener("submit", e => {
+        e.preventDefault();
+
+        // LOGIN
+
+        setFormMessage(loginForm, "error", "Invalid username/password combination");
+    });
+
+    document.querySelectorAll(".form__input").forEach(inputElement => {
+        inputElement.addEventListener("blur", e => {
+            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 5) {
+                setInputError(inputElement, "Username must be at least 5 characters in length");
+            }
+        });
+
+        inputElement.addEventListener("input", e => {
+            clearInputError(inputElement);
+        });
+    });
+});
