@@ -45,6 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 5) {
                 setInputError(inputElement, "Username must be at least 5 characters in length");
             }
+            else {
+                //REGISTER
+            }
         });
 
         inputElement.addEventListener("input", e => {
