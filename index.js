@@ -1,3 +1,5 @@
+import {DBManager} from './DBManager.js';
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -32,12 +34,26 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => {
+    loginForm.addEventListener("submit", async e => {
         e.preventDefault();
+        const basedato = new DBManager();
+        basedato.init();
+        //const usuario = await basedato.loginUser(usuario, contraseña);
+        //Prueba con usuario conocido en BD \/
+        const usuario = await basedato.loginUser("diablo", "mami");
+        //console.log(await basedato.loginUser("diablo", "mami"));
+        console.log(usuario);
+        if(usuario == 0)
+        {
+            setFormMessage(loginForm, "error", "Invalid username/password combination");
+        }else
+        {
+            console.log("Hemos iniciado sesión en usuario: " + usuario.user + " con la contraseña: " + usuario.Password + " con un nivel de experiencia: " + usuario.EXP);
+            setFormMessage(loginForm, "success", "You loged in succesfully!")
+        }
 
         // LOGIN
 
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {

@@ -29,7 +29,7 @@ export class DBManager
 	const db = getFirestore(app);
 	DBManager.BD = db;
 
-	console.log("susmu");
+	console.log("DB inicializada correctamente");
 
 	/*async function getCities(db) {
   const citiesCol = collection(db, 'inventory');
@@ -55,7 +55,7 @@ export class DBManager
 	{
 
 	}
-/***
+/**
  * Registra el usuario con los datos proporcionados
  * Te devuelve un valor numérico para asegurarte que ha sido correcto
  * 0 es error
@@ -71,7 +71,10 @@ export class DBManager
 				Password: contra,
 				coins: 0,
 				user: usuario,
-				Equipped:[]
+				Equipped:
+				{
+					//comida:true
+				}
 			});
 			resultao = 1;
 		}catch(e)
@@ -80,7 +83,7 @@ export class DBManager
 		}
 		return resultao;
 	};
-/***
+/**
  * El método loginUser necesita 2 parametros, el usuario y la contraseña,
  * este comprueba que esté registrado, en caso de error de las credenciales
  * te devuelve el valor numérico 0.
@@ -88,7 +91,7 @@ export class DBManager
  * user, Password, EXP, coins y equipped
  * 
  * por ejemplo voy a usar coins, pero con todos es igual. Se llama tal que así:
- * var objeto = loginUser(usuario, contra);
+ * var objeto = await loginUser(usuario, contra);
  * objeto.coin;
  * ó también se puede llamar así:
  * objeto['coin'];
@@ -112,7 +115,7 @@ export class DBManager
 					coins: docSnap.get("coins"),
 					equipped: docSnap.get("Equipped")
 				}
-				console.log(usuarioresultao);
+				//console.log(usuarioresultao);
 				
 			}else
 			{
@@ -130,15 +133,46 @@ export class DBManager
 
 	}
 
-	getExp()
-	{
 
+/** El parámetro es el nombre de usuario, se asume que es correcto.
+ * Igualmente en caso de error devuelve -1
+ * En caso de ser correcto devuelve el integer de la experiencia.
+ * 
+ * Ejemplo de uso:
+ * var experiencia = await getExp("usuario1");
+ */
+	async getExp(usuario)
+	{
+		const docRef = doc(DBManager.BD, "userInfo", usuario);
+		const docSnap = await getDoc(docRef);
+		let resultao = -1;
+		if(docSnap.exists())
+		{
+			resultao = await docSnap.get("Exp");
+			//console.log(resultao);
+		}
+		return resultao;
 	}
 
-	getInventory()
-	{
-
-	}
+	/** El parámetro es el nombre de usuario, se asume que es correcto.
+ * Igualmente en caso de error devuelve -1
+ * En caso de ser correcto devuelve el map de los objetos que posee el usuario con un booleano que indica si lo tiene equipado.
+ * 
+ * Ejemplo de uso:
+ * var experiencia = await getExp("usuario1");
+	 */
+	 async getItemsEquipped(usuario)
+	 {
+		 const docRef = doc(DBManager.BD, "userInfo", usuario);
+		 const docSnap = await getDoc(docRef);
+		 let resultao = -1;
+		 if(docSnap.exists())
+		 {
+			 resultao = await docSnap.get("Equipped");
+			 //console.log(resultao.get("jaja"));
+		 }
+		 return resultao;
+	 }
 
 	getItem()
 	{
@@ -155,9 +189,23 @@ export class DBManager
 
 	}
 
-	getItemsEquipped()
+	/** El parámetro es el nombre de usuario, se asume que es correcto.
+ * Igualmente en caso de error devuelve -1
+ * En caso de ser correcto devuelve el map de los objetos que posee el usuario con un booleano que indica si lo tiene equipado.
+ * 
+ * Ejemplo de uso:
+ * var experiencia = await getExp("usuario1");
+	 */
+	async getInventory(usuario)
 	{
-
+		const docRef = doc(DBManager.BD, "userInfo", usuario);
+		const docSnap = await getDoc(docRef);
+		let resultao = -1;
+		if(docSnap.exists())
+		{
+			resultao = await docSnap.get("Equipped");
+		}
+		return resultao;
 	}
 
 }
