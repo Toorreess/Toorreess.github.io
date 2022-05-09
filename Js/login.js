@@ -1,5 +1,12 @@
 import {DBManager} from './DBManager.js';
 
+const loginUsername = document.getElementById("loginUsername");
+const loginPassword = document.getElementById("loginPassword");
+
+const signupUsername = document.getElementById("signupUsername");
+const signupPassword = document.getElementById("signupPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -21,6 +28,8 @@ function clearInputError(inputElement) {
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
+    const db = new DBManager();
+    db.init();
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
         e.preventDefault();
@@ -36,11 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginForm.addEventListener("submit", async e => {
         e.preventDefault();
-        const basedato = new DBManager();
-        basedato.init();
+        
         //const usuario = await basedato.loginUser(usuario, contraseña);
         //Prueba con usuario conocido en BD \/
-        const usuario = await basedato.loginUser("diablo", "mami");
+        const usuario = await db.loginUser(loginUsername, loginPassword);
         //console.log(await basedato.loginUser("diablo", "mami"));
         console.log(usuario);
         if(usuario == 0)
@@ -50,19 +58,21 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             console.log("Hemos iniciado sesión en usuario: " + usuario.user + " con la contraseña: " + usuario.Password + " con un nivel de experiencia: " + usuario.EXP);
             setFormMessage(loginForm, "success", "You loged in succesfully!")
+            window.location.href = "./main.html";
         }
-
-        // LOGIN
-
     });
 
-    document.querySelectorAll(".form__input").forEach(inputElement => {
+    createAccountForm.addEventListener("submit", e => {
         inputElement.addEventListener("blur", e => {
+            e.preventDefault();
+
+            //Username input errors
             if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 5) {
-                setInputError(inputElement, "Username must be at least 5 characters in length");
+                setInputError(inputElement, "Username must be at least 5 characters in length.");
             }
-            else {
-                //REGISTER
+            else{
+                db.registerUser(signupUsername, signupPassword);
+                //window.location.href="./main.html"
             }
         });
 
