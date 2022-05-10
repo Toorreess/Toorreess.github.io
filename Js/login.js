@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         //const usuario = await basedato.loginUser(usuario, contraseña);
         //Prueba con usuario conocido en BD \/
-        const usuario = await db.loginUser(loginUsername, loginPassword);
+        const usuario = await db.loginUser(loginUsername.value, loginPassword.value);
         //console.log(await basedato.loginUser("diablo", "mami"));
         console.log(usuario);
-        if(usuario == 0)
+        if(usuario == 0 || usuario == -1)
         {
             setFormMessage(loginForm, "error", "Invalid username/password combination");
         }else
@@ -64,22 +64,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    createAccountForm.addEventListener("submit", e => {
-        inputElement.addEventListener("blur", e => {
-            e.preventDefault();
-
-            //Username input errors
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 1) {
-                setInputError(inputElement, "Username must be at least 1 characters in length.");
-            }
-            else{
-                db.registerUser(signupUsername, signupPassword);
-                window.location.href="./index.html"
-            }
-        });
+/*     createAccountForm.addEventListener("submit", e => {
+        if(db.loginUser(signupUsername) == -1){
+            db.registerUser(signupUsername, signupPassword);
+            window.location.href = "./main.html";
+        }
 
         inputElement.addEventListener("input", e => {
             clearInputError(inputElement);
-        });
-    });
+        }); 
+    }); */
 });

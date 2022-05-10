@@ -125,7 +125,7 @@ export class DBManager
 			
 		  } else {
 			// doc.data() will be undefined in this case
-			usuarioresultao = 0;
+			usuarioresultao = -1;
 			console.log("El usuario introducido no está registrado");
 		  }
 		  return usuarioresultao;
