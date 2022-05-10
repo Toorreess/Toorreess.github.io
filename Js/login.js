@@ -7,6 +7,7 @@ const signupUsername = document.getElementById("signupUsername");
 const signupPassword = document.getElementById("signupPassword");
 const confirmPassword = document.getElementById("confirmPassword");
 
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -24,6 +25,7 @@ function clearInputError(inputElement) {
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -67,12 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
 
             //Username input errors
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 5) {
-                setInputError(inputElement, "Username must be at least 5 characters in length.");
+            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 1) {
+                setInputError(inputElement, "Username must be at least 1 characters in length.");
             }
             else{
                 db.registerUser(signupUsername, signupPassword);
-                //window.location.href="./main.html"
+                window.location.href="./index.html"
             }
         });
 
