@@ -3,11 +3,26 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./Css/index.css">
+	<link rel="stylesheet" href="./index.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Log in / Sign up </title>
-	<link rel="icon" href="./Icons/icono_black.jpeg">
+	<link rel="icon" href="./icono_black.jpeg">
+    <script type="module"> //Ejemplo de integración de la bbdd con codigo usado para probar la bbdd
+        import {DBManager} from "./DBManager.js";
+        const db = new DBManager();
+        db.init();
+        //db.registerUser("diablo", "mami");
+        //db.loginUser("diablo", "mami");
+        //console.log(await db.loginUser("diablo", "mami"));
+        //console.log(await db.getExp("diablo"));
+        //console.log(await db.getInventory("diablo"));
+        //console.log(await db.getItemsEquipped("diablo"));
+        //console.log(await db.getCoins("diablo"));
+        console.log(await db.getItemPrice("ternera"));
+        //console.log(await db.getItem("ternera"));s);
+    </script>
+</head>
 <body>
     <div class="container">
         <form class="form" id="login">
@@ -34,6 +49,10 @@
                 <div class="form__input-error-message"></div>
             </div>
             <div class="form__input-group">
+                <input type="text" id="petName" class="form__input" autofocus placeholder="Pet Name">
+                <div class="form__input-error-message"></div>
+            </div>
+            <div class="form__input-group">
                 <input type="password" id="signupPassword" class="form__input" autofocus placeholder="Password">
                 <div class="form__input-error-message"></div>
             </div>
@@ -47,5 +66,5 @@
             </p>
         </form>
     </div>
-    <script src="./Js/login.js" type="module"></script>
+    <script src="./index.js" type="module"></script>
 </body>

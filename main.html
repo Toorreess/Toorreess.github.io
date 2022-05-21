@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./Css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./main.css" />
+
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PINWI</title>
-	<link rel="icon" href="./Icons/icono_black.jpeg">
+	<link rel="icon" href="icono_black.jpeg">
 </head>
 <body>
 
 <div class="container">
 	<div class="exp" id="exp">0 EXP</div>
-	<div class="exp" id="lvl">Level 0</div>
+	<div class="exp" id="lvl">LVL 0</div>
 	<div id="name">PÏNWÏ</div>
-	<a href="./inventory.html">
-	<div id="tienda" class="button">Tienda</div>
-	<div id="menu" class="button">Menu</div>
-	<div id="juego" class="button">Juego</div>	
+
+	<a href="./inventory.html">	
+		<div id="tienda" class="button">INVENTORY</div>
 	</a>
-	<div id="img-container">
-		<img src="./Skin/huevoF.png" id="pinwi">
+
+	<a href="./juego.html">	
+		<div id="juego" class="button">GAME</div>
+	</a>
+
+	<div id="extra" class="button" >DINEROS
 	</div>
+
+	<div id="money"></div>
+
+	<div id="img-container">
+		<img src="./skin/huevoF.png" id="pinwi">
+	</div>
+
+	<div class="ropa">
+		<img id="Head">
+	</div>
+	<div class="ropa">
+		<img  id="Body">
+	</div>
+	<div class="ropa" >
+		<img id="Down">
+	</div>
+	<div class="ropa" >
+		<img id="Face">
+	</div>
+
 </div>
 
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js" integrity="sha512-6zTDRWNxo8vI6JZYDCwhrJpg5icK3P4HNnW3czsO5Scb3lAoPDam+/wF3eog4hxcl0h44d0XlIcFkuoSaWHQ2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript" src="./Js/main.js"></script>
+<script type="module" src="main.js"></script>
 </html>

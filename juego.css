@@ -1,0 +1,99 @@
+* {
+    transition: all 0.3s;
+    font-family: 'Press Start 2P', cursive;
+    
+  }
+
+  body {
+    background: url("https://64.media.tumblr.com/528b3120a1cbc2cb0d78e0f05fd0415b/f6ef5d4f940e6e2f-5d/s1280x1920/fa0e4b45ecea598941d5d7eef658a8907b0e4ef4.gifv");
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: calibri;
+    font-size: 120%;
+    /* backdrop-filter: blur(4px); */
+  }
+
+  .contenedor {
+    width: 98vw;
+    height: 97vh;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .encabezado {
+    position: relative;
+    background: white;
+    min-width: 300px;
+    width: 70%;
+    max-width: 600px;
+    padding: 10px;
+  }
+
+  .categoria {
+    opacity: 0.3;
+    text-align: left;
+  }
+
+  .pregunta {
+    padding: 10px;
+  }
+
+  .imagen {
+    object-fit: cover;
+    height: 0px;
+    width: 0px;
+  }
+
+  .btn {
+    background: white;
+    width: 60%;
+    max-width: 550px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .numero{
+    position: absolute;
+    opacity:0.3;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .puntaje{
+    padding:10px;
+    color:white;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  #money{
+
+    position: absolute;
+    justify-content: center;
+    top: 30px;
+    right: 30px;
+    font-size: 1.5vw;
+    margin: 5px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: inline-block;
+    box-shadow: 0px 0px 10px 5px rgb(22, 71, 3);
+    border-radius:50%;
+    text-align: center;
+    display: flex;
+    color: rgb(38, 124, 4);
+    background-color: rgba(202, 241, 191, 0.904);
+    user-select: none;
+}

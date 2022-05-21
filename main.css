@@ -1,0 +1,130 @@
+body{
+    background-color: black;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+}
+
+img{
+    width: 25vw;
+    transition: width 0.5s;
+    user-select: none;
+}
+
+.container{
+    box-shadow: 0 0 15px 5px white;
+    background-image: url("https://64.media.tumblr.com/528b3120a1cbc2cb0d78e0f05fd0415b/f6ef5d4f940e6e2f-5d/s1280x1920/fa0e4b45ecea598941d5d7eef658a8907b0e4ef4.gifv");
+    background-size: cover;
+    background-position: center;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    margin: 0px;
+    position: absolute;
+    background-color: aqua;
+    border: 0px solid red;
+    border-radius: 10px;
+}
+
+.button{
+    position: absolute;
+    background-color: white;
+    margin: 5px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 2vw;
+    color: black;
+    box-shadow: 5px 5px 10px 5px black;
+    cursor: pointer;
+    user-select: none;
+}
+
+.ropa{
+    position: absolute;
+    /* border: 1px solid red; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#money{
+    position: absolute;
+    justify-content: center;
+    top: 30px;
+    right: 30px;
+    font-size: 1.5vw;
+    margin: 5px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: inline-block;
+    box-shadow: 0px 0px 10px 5px rgb(22, 71, 3);
+    border-radius:50%;
+    text-align: center;
+    display: flex;
+    color: rgb(38, 124, 4);
+    background-color: rgba(202, 241, 191, 0.904);
+    user-select: none;
+}
+
+#juego{
+    top: 10px;
+    left: 10px;
+}
+
+#tienda{
+    bottom: 10px;
+    left: 10px;
+}
+
+#pinwi{
+    position: absolute;
+    /* border: 1px solid red; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#extra{
+    font-size: 0.5vw;
+    bottom: 50%;
+    right: 10px;
+    opacity: 0;
+}
+
+
+#name{
+    position: absolute;
+    color: azure;
+    text-align: center;
+    /* border: 1px solid red; */
+    font-size: 5.5vw;
+    left:50%;
+    top: 5% ;
+    transform:translate(-50%, 0) ;
+    transition: top 0.25s;
+    text-shadow: 0px 0px 15px black;
+}
+
+#exp{
+    position: absolute;
+    color: yellow ;
+    font-size: 2rem;
+    bottom:35px;
+    left: 80%;
+    transform:translate(-50%, 0) ;
+    text-shadow: 0px 0px 10px black;
+}
+
+#lvl{
+    position: absolute;
+    color: white ;
+    font-size: 3rem;
+    bottom:50px;
+    left: 50%;
+    transform:translate(-50%, 0) ;
+    text-shadow: 0px 0px 10px black;
+}
